@@ -17,8 +17,7 @@ class ProjectTableSeeder extends Seeder
      */
     public function run()
     {
-        $types = Type::all();
-
+        $types = Type::inRandomOrder() ->get();
         // Crea e associa un progetto per ciascun tipo però in base al count del typeseeder
         // $types->each(function ($type) {
         //     $project = Project::factory()->make();
@@ -29,12 +28,13 @@ class ProjectTableSeeder extends Seeder
         // Crea e associa un progetto per ciascun tipo però in base al count del projectseeder
         // succede projectCount*typeCount ... in questo caso 10 progetti * i tipi esistenti(2) = 20
         $types->each(function ($type) {
-            $projects = Project::factory()->count(10)->make();
+            $projects = Project::factory()->count(2)->make();
             
             $projects->each(function ($project) use ($type) {
                 $project->type()->associate($type);
                 $project->save();
             });
         });
+
     }
 }
