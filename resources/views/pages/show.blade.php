@@ -23,8 +23,17 @@
     @if ($TechnologieProject != '<strong>Technologie progetto:</strong>')
         <span>{!! $TechnologieProject !!}</span>
     @endif
-    
-    <a href="{{ route('pages.edit', $project -> id ) }}">
-        Modifica
+    <br>
+    <a href="{{ route('pages.edit', $project->id) }}" class="d-inline-block my-3">
+        Modifica progetto
     </a>
+    <h4>Immagine: </h4>
+    @if (isset($project->image))
+        <img src="{{ asset('storage/' . $project->image) }}" alt="" style="height:200px;">
+        <br>
+    @else
+        <span>Nessuna immagine </span>
+    @endif
+
+    <br>
 @endsection

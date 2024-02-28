@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
+use Storage;
 
 class ProjectController extends Controller
 {
@@ -38,7 +39,7 @@ class ProjectController extends Controller
         $type = Type::find($data['type_id']);
 
         $project = new Project();
-
+        $project->image = Storage::put('uploads', $data['image']);
         $project->name = $data['name'];
         $project->description = $data['description'];
 
@@ -56,7 +57,9 @@ class ProjectController extends Controller
         $type = Type::find($data['type_id']);
 
        $project = Project :: find($id);
-
+       if (isset($data['image'])) {
+        $project->image = Storage::put('uploads', $data['image']);
+    }
         $project->name = $data['name'];
         $project->description = $data['description'];
 

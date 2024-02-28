@@ -3,8 +3,8 @@
     <title>Create</title>
 @endsection
 @section('content')
-<h1>NUOVI PROGETTI</h1>
-    <form action="{{ route('index') }}" method="POST">
+    <h1>NUOVI PROGETTI</h1>
+    <form action="{{ route('index') }}" method="POST" enctype="multipart/form-data">
 
         @csrf
         @method('PUT')
@@ -15,10 +15,14 @@
         <label for="description">Descrizione</label>
         <input type="text" name="description" id="description">
         <br>
+
+        <label for="image">Carica immagine</label>
+        <input type="file" name="image" id="image">
+        <br>
         <label for="type_id">Tipo di progetto</label>
         <select name="type_id" id="type_id">
             @foreach ($types as $type)
-                <option value="{{ $type -> id}}">{{ $type -> name }}</option>
+                <option value="{{ $type->id }}">{{ $type->name }}</option>
             @endforeach
         </select>
         <br>
@@ -27,15 +31,10 @@
         </label>
         <br>
         @foreach ($technologies as $technology)
-            <input
-                type="checkbox"
-                name="technology_id[]"
-                id="{{ 'technology_id_' . $technology -> id }}"
-                value="{{ $technology -> id }}"
-            >
-            <label
-                for="{{ 'technology_id_' . $technology -> id }}">
-                {{ $technology -> name }}
+            <input type="checkbox" name="technology_id[]" id="{{ 'technology_id_' . $technology->id }}"
+                value="{{ $technology->id }}">
+            <label for="{{ 'technology_id_' . $technology->id }}">
+                {{ $technology->name }}
             </label>
             <br>
         @endforeach
