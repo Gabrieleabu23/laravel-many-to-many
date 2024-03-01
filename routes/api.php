@@ -21,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route :: group(['prefix' => '/v1'], function() {
 
     Route :: get('test', [ ApiController :: class, 'getTest']);
+    Route :: get('tech', [ ApiController :: class, 'gettech']);
+    Route :: post('tech', [ ApiController :: class, 'createTechnologies']);
 
 
 });
